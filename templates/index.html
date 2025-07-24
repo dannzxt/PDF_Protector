@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PDF Protector</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h2>PDF Protector</h2>
+      <hr />
+      <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <div>
+          <label for="id">ID</label>
+          {{ form.id(size = 20) }}
+        </div>
+        <div>
+          <label for="position">Position</label>
+          {{ form.position() }}
+        </div>
+        <div>
+          <label for="color">Color</label>
+          <input type="color" name="color" id="color" />
+        </div>
+        <div>
+          <label for="file">File</label>
+          <input type="file" name="file" id="file" />
+        </div>
+        <div>
+          <input type="submit" value="Submit" />
+        </div>
+
+        {% with messages = get_flashed_messages() %} {% if messages %}
+        <ul>
+          {% for message in messages %}
+          <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %} {% endwith %}
+      </form>
+    </div>
+  </body>
+</html>
